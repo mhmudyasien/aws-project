@@ -105,6 +105,23 @@ aws dynamodb restore-table-to-point-in-time \
 
 ---
 
+## 📒 Runbook: Self-Hosted Redis Maintenance (Cost-Optimized)
+
+**Context**: For the cost-optimized architecture using Redis on EC2.
+
+**Checks**:
+1.  **Disk Space**: Ensure `/var/lib/redis` has space (Logs > 80%? Rotate them).
+2.  **Memory**: If using `t4g.micro`, ensure swap is enabled.
+
+**Patching**:
+```bash
+# Monthly Patching
+sudo dnf update -y redis6
+sudo systemctl restart redis6
+```
+
+---
+
 ## 📞 Escalation Policy
 
 | Severity | Response Time | Contact |
